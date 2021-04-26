@@ -1,0 +1,58 @@
+// ==UserScript==
+// @name         Hypothetical AoPS Usercript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  a userscript, i bad at code
+// @author       snoozingnewt
+// @match        https://artofproblemsolving.com/community/c1992195*
+// @icon         https://www.google.com/s2/favicons?domain=greasyfork.org
+// @grant        none
+// import java.util.Random;
+// ==/UserScript==
+
+window.addEventListener('load', function() {
+'use strict';
+
+    // Your code here...
+    alert("Welcome!");
+
+'use strict';
+
+    $(".infobar").remove();
+
+
+(function() {
+    'use strict';
+
+    function addStyle(css) {
+        var head, style;
+        head = document.getElementsByTagName('head')[0];
+        if (!head) { return; }
+        style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = css;
+        head.appendChild(style);
+    }
+
+    addStyle('@import url(https://fonts.googleapis.com/css?family=Condiment&display=swap);'); // Set Font Family from Google Fonts
+//    addStyle('._5wj- { font-family: "Condiment", sans-serif !important; font-size: 18px !important;}');
+    addStyle('._2s25 { font-family: "Condiment", sans-serif !important; font-size: 16px !important;}'); // Top Navigation Text 'user' 'home' 'find friends' 'create'
+    addStyle('._16ve { font-family: "Condiment", sans-serif !important; font-size: 11px !important;}'); // Icons 'photo/video' 'tag friends' 'feeling/activity'
+    addStyle('._72vr { font-family: "Condiment", sans-serif !important; font-size: 14px !important;}'); // Comments +
+    addStyle('._4w79 { font-family: "Condiment", sans-serif !important; font-size: 14px !important;}'); // Comment Input Text
+    addStyle('._55lr { font-family: "Condiment", sans-serif !important; font-size: 10px !important;}'); // Right panel
+    addStyle('._5afe { font-family: "Condiment", sans-serif !important; font-size: 12px !important;}'); // Left panel
+//    addStyle('._5pbx userContent { font-family: "Condiment", sans-serif !important; font-size: 13px !important;}'); // User Content
+    addStyle('.fwb { font-family: "Condiment", sans-serif !important; font-size: 14px !important;}'); // Poster's Name
+    addStyle('._wpv { font-family: "Condiment", sans-serif !important; font-size: 12px !important;}'); // Poster's Group
+    addStyle('._5v3q ._5pbx p { font-family: "Condiment", sans-serif !important; font-size: 16px !important;}'); // Poster's Text
+    addStyle('.fbPhotosPhotoCaption { font-family: "Condiment", sans-serif !important; font-size: 12px !important;}'); // Photo Captions
+//    addStyle('._4ik6 { font-family: "Condiment", sans-serif !important; font-size: 10px !important;}');
+    addStyle('.nameText _3gz_ { font-family: "Condiment", sans-serif !important; font-size: 18px !important;}');
+    addStyle('body { font-family: "Condiment", sans-serif !important; font-size: 12px !important;}');
+    addStyle('p { font-family: "Condiment", sans-serif !important; font-size: 12px !important;}'); // Basic 'body' text
+    addStyle('._5rpb { font-family: "Condiment", sans-serif !important; font-size: 18px !important;}');
+})();
+
+})();
+
