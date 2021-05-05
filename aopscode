@@ -1,60 +1,109 @@
 // ==UserScript==
 // @name         Hypothetical RPG Userscript
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  dum
+// @version      1.15
+// @description  This is a script for a hypothetical RPG forum coming to theaters near you.
 // @author       snoozingnewt
 // @match        https://artofproblemsolving.com/community/c1992195*
-// @icon         https://media.discordapp.net/attachments/763964223734153226/836416148333002782/9k.png
+// @icon         https://media.discordapp.net/attachments/763965102008696883/839178114449670144/unknown.png?width=2064&height=1019
 // @grant        GM_addStyle
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
+// @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
-/** This script is an unofficial add on for artofproblemsolving.com and is not affiliated in any way with AoPS Incorporated.
+/** This script is an unofficial add-on for artofproblemsolving.com and is not affiliated in any way with AoPS Incorporated.
 This is a script for a hypothetical RPG forum coming to theaters near you.
 
-To Do List:
-1. Remove excess unneeded code (done!)
-2. Figure out how to link the download to github (help)
-3. Figure out the rest of the fonts that don't work (new font userscript still needs work with this)
+To-Do List: (Removed is done if you really care about them just go to previous versions)
+
+3. Figure out the rest of the fonts that don't work (some weird font spaces don't work fsr)
 4. Cosmetic Icons (We have username colors but we must have icons)
-5. Background (Sort of Done? Just need bigger and better image)
-6. Figure out the AoPS Online Logo (Ongoing)
 7. Add automated RPG things, bank, item drops, etc. (IMPORTANT) (Kind of the biggest thing and will have to beg someone else to do)
-8. Figure out how i can make $ work without an error on a userscript
-9. Learn how to actually code lol
-10. Figure out why it can't work sometimes
+8. Figure out how I can make $ work without an error on a userscript (not important)
+9. Learn how to actually code lol (not important) (will never happen)
+11. Change some more colors around
+12. Background slightly off
+14. Make the RPG rules lol (unrelated to userscript)
+15. Because aops doesn't reload when switching between forums sometimes we need to make an autoreloader whenever someone leaves and enters the forum
+16. elaborate on 7
+17. Make an actual logo
+
 **/
+
+/* Font Changer */
 window.addEventListener('load', function() {
 (function () {
     GM_addStyle(`
-    body :not(i){font-family:"Sarasa Gothic SC",system-ui,emoji}
-    [lang$="HK"] :not(i),[lang$="MO"] :not(i){font-family:"Sarasa Gothic HC",system-ui,emoji}
-    [lang$="TW"] :not(i),[lang$="hant"] :not(i){font-family:"Sarasa Gothic TC",system-ui,emoji}
-    :lang(ja) :not(i){font-family:"Sarasa Gothic J",system-ui,emoji}
-    :lang(ko) :not(i){font-family:"Sarasa Gothic K",system-ui,emoji}
-    :root body pre,:root body code,:root body samp,:root body kbd,:root body var{font-family:"Sarasa Fixed SC"}
-    :root body pre span,:root body code span,:root body samp span,:root body kbd span,:root body var span{font-family:"Sarasa Fixed SC"}
+    body :not(i){font-family:"Oxygen",system-ui,emoji}
     `);
 })();
 
+/* Ranking Colors
+   Do not edit */
     $('head').append(`
 <style>
 a[title*="snoozingnewt"] {
-color: cyan;
+color: #fff000;
 }
 a[title*="SamuraiA"] {
-color: orange;
+color: cyan;
 }
-a[title*="awesomeming327."] {
+a[title*="User] {
 color: red;
 }
 </style>
 `);
 
+/* Background */
 var change_color = function(){
-document.body.style.background = "url('https://media.discordapp.net/attachments/763965102008696883/839178114449670144/unknown.png?width=2064&height=1019')"; //put any color in here
+document.body.style.background = "url('https://media.discordapp.net/attachments/763965102008696883/839178114449670144/unknown.png?width=2064&height=1019')"; //insert image url
 }
 change_color();
+/* Notes About Image
+Taken From:
+https://wallpaperaccess.com/fantasy-landscape
+This image is for personal use.
+*/
 
+
+/* Tag Changes
+
+Copy this:
+if (tag[i].textContent=='(INSERT TAG NAME)') {
+    tag[i].setAttribute("style", "background-color: *(INSERT COLOR OF HEXADECIMAL CODE);");
+}
+
+*/
+function tag_change() {
+var tag=document.getElementsByClassName("cmty-item-tag");
+for (var i = 0; i < tag.length; i++) {
+if (tag[i].textContent=='official') {
+    tag[i].setAttribute("style", "background-color: red;");
+}
+}
+};
+setInterval(tag_change, 500);
+
+/*Logo Change? Works Now! */
+//computer aops online logo
+var elems = document.getElementsByClassName("logo-img");
+for (var i = 0; i < elems.length; i+= 1) {
+    elems[i].src = "https://i.ibb.co/YZhqdcM/New-Drawing-1.png";
+}
+//mobile aops online logo
+var elems2 = document.getElementsByClassName("logo-img-mobile");
+for (var i2 = 0; i2 < elems2.length; i2+= 1) {
+    elems2[i2].src = "https://i.ibb.co/YZhqdcM/New-Drawing-1.png";
+}
+//small aops online logo
+var elems3 = document.getElementsByClassName("logo-img-small");
+for (var i3 = 0; i3 < elems3.length; i3+= 1) {
+    elems3[i3].src = "https://i.ibb.co/YZhqdcM/New-Drawing-1.png";
+}
+//aops online logo near the bottom of the screen
+var elems4 = document.getElementsByClassName("footer-mainLogo");
+for (var i4 = 0; i4 < elems4.length; i4+= 1) {
+    elems4[i4].src = "https://i.ibb.co/YZhqdcM/New-Drawing-1.png";
+}
 }, false);
